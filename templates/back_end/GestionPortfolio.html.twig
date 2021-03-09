@@ -1,0 +1,132 @@
+{% include "base.html.twig" %}
+{% block title %}liste des portfolio{% endblock %}
+{% block stylesheets %}
+
+    <link rel="stylesheet" href="path-to/node_modules/mdi/css/materialdesignicons.min.css"/>{% endblock %}
+{% block body %}
+</br></br></br></br>
+<div class="container-fluid">
+<div style="background-color: #f4f4f4;">
+<div  class="container-fluid">
+<div class="card card-cascade wider reverse" style ="background-color:white !important; margin-top:5%;">
+<div  style="background-color:#4285f4; margin-top:-2%; width:30%; color:white; height:20%; text-align:center;">
+<div  style="padding:2%;">liste des portfolio</div>
+</div>
+<div  class="text-right" ><a style="margin-right: 120px;  " class="btn btn-info"><font color="white"><i data-toggle="modal" data-target="#exampleModalCenter" class="fas fa-plus"></i></font></a></div>
+ 
+
+
+<!-- Modal -->
+
+<form action="{{path('AddPortfolio')}}" method="Post">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter portfolio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+  <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Titre</label>
+        <input type="text" name="titre"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+   <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Url </label>
+    <input type="text" name="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  
+         <div class="container">
+             <form>
+                 <div class="form-group">
+                     <label for="fichier">Fichier</label>
+                     <input type="file" class="form-control-file" id="fichier">
+                 </div>
+             </form>
+         </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div></form>
+
+    <div class="card-body card-body-cascade text-center" >
+<table class="table table-hover">
+
+<thead>
+<tr>
+<td><strong>Titre</strong></td>
+<td><strong>Url</strong></td>
+<td><strong>Action</strong></td>
+</tr>
+</thead>
+<tbody>
+{% set count = 0 %}
+{% for portfolio in portfolios %}
+<tr>
+<td>{{ portfolio.titre }} </td>
+<td>{{ portfolio.url }} </td>
+<td>
+<div class="widget-content-right">
+                         <button  class="border-0 btn-transition btn btn-outline-success">
+                            <i data-toggle="modal" data-target="#exampleModalLong" class="fa fa-edit"></i>
+                        </button>
+                        <button class="border-0 btn-transition">
+<a href="{{path('deletePortfolio', {'id':portfolio.id})}}"  onClick="return confirm('Vous vouller vraiment supprimer ce portfolio');">   <i class="fa fa-trash-alt"></i></a>
+                        </button>
+                           </div>
+{# formulaire d edition#}
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+             <form>
+                 <div class="form-group">
+                     <label for="exampleInputEmail1" class="form-label">titre </label>
+    <input type="text" name="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                 </div>
+                 <div class="form-group">
+                     <label for="exampleInputEmail1" class="form-label">Url </label>
+    <input type="text" name="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                 </div>
+             </form>
+         </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div></form>
+      </div>
+       </div>
+  </div>
+</div>
+
+{# edit #}
+</td>
+{% set count = count + 1 %}
+
+</tr> {% endfor %}
+
+</tbody>
+
+ </table></div></div></div></div></div>
+
+{% endblock %}
