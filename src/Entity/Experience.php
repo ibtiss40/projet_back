@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ExperienceRepository;
 use Doctrine\ORM\Mapping as ORM;
+ use Symfony\Component\Validator\Constraints\DateTimeInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ExperienceRepository::class)
@@ -77,7 +78,7 @@ class Experience
         return $this->date_debut;
     }
 
-    public function setDateDebut(\DateTimeInterface $date_debut): self
+    public function setDateDebut(\DateTimeInterface $date_debut ): self
     {
         $this->date_debut = $date_debut;
 

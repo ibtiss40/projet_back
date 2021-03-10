@@ -1,0 +1,72 @@
+{% extends 'baseC.html.twig' %}
+{% block title %}
+	Hello InfoclientController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.test {
+			margin: 5%;
+		}
+	</style>
+	<div class="test">
+		<form>
+			<div class="form-row">
+
+				<div class="col-sm-4">
+					<div class="col-sm-3 mx-sm-4">
+						<div class="card" style="width: 17rem;">
+
+							<div class="card-body">
+								<a href="#" class="card-link ">Info General</a><br>
+								<a href="{{ path('specification_cv') }}" class="card-link">Specification CV</a><br>
+								<a href="{{ path('specification_portfolio') }}" class="card-link">Specification Portfolio</a><br>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group mx-sm-3 mb-2">
+						<label>Nom :</label>
+						<input type="text" class="form-control" placeholder="Entrer votre nom">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label>Prenom :</label>
+						<input type="text" class="form-control" placeholder="Entrer votre prenom">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label>Email :
+						</label>
+						<input type="email" disabled="disabled" class="form-control" aria-describedby="emailHelp" placeholder="Vous ne pouvez pas changer votre email">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label>Telephone :
+						</label>
+						<input type="tel" class="form-control" placeholder="Entrer votre numero de telephone ">
+					</div>
+
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary">
+							Modifier MDP</button>
+						<button type="submit" class="btn btn-success">Save</button>
+
+					</div>
+
+
+				</div>
+
+
+				<div class="form-row">
+					<div class="col-sm-4">
+						<div class="mx-sm-4 mb-2">
+							<img class="rounded-circle " type="button" width="150" height="150" alt="hellllooo" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" data-holder-rendered="true">
+						</div>
+					</div>
+
+
+				</div>
+
+			</form>
+		</div>
+	{% endblock %}
