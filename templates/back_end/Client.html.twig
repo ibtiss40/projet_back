@@ -50,6 +50,8 @@
  
 <td>
  <a href="{{path('deleteC', {'id':client.id})}}" class="btn btn-danger"  onClick="return confirm('Vous vouller vraiment supprimer ce client');"><i class="mdi mdi-delete"></i></a>
+  <a href="{{path('profile', {'id':client.id})}}"   onClick="return confirm('Vous vouller voir');"><i class="mdi mdi-delete"></i></a>
+
 </td>
 {% set count = count + 1 %}
 

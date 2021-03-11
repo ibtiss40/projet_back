@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -42,18 +44,20 @@ class Client implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
     private $password;
 
    
 
     /**
-     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="id_client")
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="id_client",cascade={"persist"})
      */
     private $id_experience;
 
@@ -63,12 +67,12 @@ class Client implements UserInterface
     private $bio;
 
     /**
-     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=Formation::class, mappedBy="client",cascade={"persist"})
      */
     private $id_formation;
 
     /**
-     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=Competence::class, mappedBy="client",cascade={"persist"})
      */
     private $id_competence;
 

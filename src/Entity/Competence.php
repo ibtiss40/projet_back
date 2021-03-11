@@ -23,7 +23,7 @@ class Competence
     private $titre;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_competence")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_competence",cascade={"persist","remove"})
      */
     private $client;
 

@@ -139,4 +139,14 @@ class BackEndController extends AbstractController
                  return $this->redirectToRoute('gestion_portfolio');
    
             }  
+
+             /**
+     * @Route("/clients/{id}/profile", name="profile.")
+     */
+     public function proflife(Client $client )
+     {
+       
+        return $this->render('back_end/profile.html.twig');
+        }
+
 }

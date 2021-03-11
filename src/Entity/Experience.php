@@ -39,7 +39,7 @@ class Experience
     private $date_fin;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_experience")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_experience",cascade={"persist","remove"})
      */
     private $id_client;
 

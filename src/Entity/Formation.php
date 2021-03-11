@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\FormationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTimeInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=FormationRepository::class)
@@ -38,7 +40,7 @@ class Formation
     private $date_fin;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_formation")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="id_formation",cascade={"persist","remove"})
      */
     private $client;
 
@@ -90,7 +92,7 @@ class Formation
         return $this->date_fin;
     }
 
-    public function setDateFin(DateTimeInterface $date_fin): self
+    public function setDateFin(\DateTimeInterface $date_fin): self
     {
         $this->date_fin = $date_fin;
 
