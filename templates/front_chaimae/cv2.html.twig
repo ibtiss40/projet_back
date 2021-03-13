@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Creative CV</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+		<link href="front-end/cv2/css/aos.css?ver=1.1.0" rel="stylesheet">
+		<link href="front-end/cv2/css/bootstrap.min.css?ver=1.1.0" rel="stylesheet">
+		<link href="front-end/cv2/css/main.css?ver=1.1.0" rel="stylesheet">
+		<noscript>
+			<style type="text/css">
+				[data-aos] {
+					opacity: 1 !important;
+					transform: translate(0) scale(1) !important;
+				}
+			</style>
+		</noscript>
+	</head>
+	{% block body %}
+
+	<body id="top">
+		<header>
+			<div class="profile-page sidebar-collapse">
+				<nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
+					<div class="container">
+						<div class="navbar-translate"></div>
+
+					</div>
+				</nav>
+			</div>
+		</header>
+		<div class="page-content">
+			<div>
+				<div class="profile-page">
+					<div class="wrapper">
+						<div class="page-header page-header-small" filter-color="green">
+							<div class="page-header-image" data-parallax="true" style="background-image: url('images/cc-bg-1.jpg')"></div>
+							<div class="container">
+								<div class="content-center">
+									<div class="cc-profile-image">
+										<a href="#"><img src="{{client.image}}" alt="Image"/></a>
+									</div>
+									<div class="h2 title">{{client.name}}
+										{{client.prenom}}</div>
+									<p class="category text-white">{{client.bio}}</p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="section" id="about">
+					<div class="container">
+						<div class="card" data-aos="fade-up" data-aos-offset="10">
+							<div class="row">
+								<div class="col-lg-6 col-md-12">
+									<div class="card-body">
+										<div class="h4 mt-0 title">About</div>
+										<p>{{client.bio}}</p>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-12">
+									<div class="card-body">
+										<div class="h4 mt-0 title">Basic Information</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<strong class="text-uppercase">Age:</strong>
+											</div>
+											<div class="col-sm-8">{{client.dateBirth}}</div>
+										</div>
+										<div class="row mt-3">
+											<div class="col-sm-4">
+												<strong class="text-uppercase">Email:</strong>
+											</div>
+											<div class="col-sm-8">{{client.email}}</div>
+										</div>
+										<div class="row mt-3">
+											<div class="col-sm-4">
+												<strong class="text-uppercase">Phone:</strong>
+											</div>
+											<div class="col-sm-8">{{client.telephone}}</div>
+										</div>
+										<div class="row mt-3">
+											<div class="col-sm-4">
+												<strong class="text-uppercase">Address:</strong>
+											</div>
+											<div class="col-sm-8">{{client.adress}}</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="section">
+					<div class="container cc-education">
+						<div class="h3 text-center mb-4 title">Formation</div>
+						{% set count = 0 %}
+						{% for formation in client.getIdFormation() %}
+							<div class="card">
+								<div class="row">
+									<div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+										<div class="card-body cc-education-header">
+											<p>
+												{{formation.getDateDebut()|date("m/d/Y") }}-{{formation.getDateFin()|date("m/d/Y") }}
+											</p>
+											<div class="h5">{{formation.societe}}</div>
+										</div>
+									</div>
+									<div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+										<div class="card-body">
+											<div class="h5">{{formation.description}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% set count = count + 1 %}
+						{% endfor %}
+
+					</div>
+				</div>
+				<div class="section">
+					<div class="container cc-education">
+						<div class="h3 text-center mb-4 title">Experience</div>
+						{% set count = 0 %}
+						{% for experience in client.getIdExperience() %}
+							<div class="card">
+								<div class="row">
+									<div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="500">
+										<div class="card-body cc-education-header">
+											<p>
+												{{experience.getDateDebut()|date("m/d/Y") }}-{{experience.getDateFin()|date("m/d/Y") }}
+											</p>
+											<div class="h5">{{experience.societe}}</div>
+										</div>
+									</div>
+									<div class="col-md-9" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+										<div class="card-body">
+											<div class="h5">{{experience.description}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% set count = count + 1 %}
+						{% endfor %}
+
+					</div>
+				</div>
+				<div class="section" style="">
+					<div class="container cc-education">
+						<div class="h3 text-center mb-4 title">Langue</div>
+						{% set count = 0 %}
+						{% for langue in client.getIdLangue() %}
+							<div class="card">
+								<div class="row" style="height:70px">
+									<div class="col-md-3 bg-primary" data-aos="fade-right" data-aos-offset="50" data-aos-duration="600">
+										<div class="card-body cc-education-header">
+											<div class="h5">
+												<center>{{langue.titre}}</center>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3" data-aos="fade-left" data-aos-offset="50" data-aos-duration="500">
+										<div class="card-body">
+											<div class="h5">{{langue.description}}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% set count = count + 1 %}
+						{% endfor %}
+
+					</div>
+				</div>
+
+				<div class="section">
+					<div class="container cc-education">
+						<div class="h3 text-center mb-4 title">Loisir</div>
+						<div class="container">
+							<div class="row " style="display: flex;">
+								{% for loisir in client.getIdLoisir() %}
+
+
+									<div class="col-md-3 h3" style="background-color: #0CA83A; color: white;
+											    padding: 5px;
+											    border-radius: 5px;
+											    box-shadow: 0px 1px 8px 0px;margin-right: 20px; margin-bottom: 10px;">
+										<center>{{loisir.titre}}</center>
+									</div>
+
+
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</body>
+		</body>
+	</body>
+</html></body><script {% endblock %} src="front-end/cv2/js/core/jquery.3.2.1.min.js?ver=1.1.0"></script><script src="front-end/cv2/js/core/popper.min.js?ver=1.1.0"></script><script src="front-end/cv2/js/core/bootstrap.min.js?ver=1.1.0"></script><script src="front-end/cv2/js/now-ui-kit.js?ver=1.1.0"></script><script src="front-end/cv2/js/aos.js?ver=1.1.0"></script><script src="front-end/cv2/scripts/main.js?ver=1.1.0"></script></html>

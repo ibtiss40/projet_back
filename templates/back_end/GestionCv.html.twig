@@ -1,132 +1,34 @@
 {% include "base.html.twig" %}
-{% block title %}liste des curricurims vitae{% endblock %}
-{% block stylesheets %}
-
-    <link rel="stylesheet" href="path-to/node_modules/mdi/css/materialdesignicons.min.css"/>{% endblock %}
-{% block body %}
-</br></br></br></br>
-<div class="container-fluid">
-<div style="background-color: #f4f4f4;">
-<div  class="container-fluid">
-<div class="card card-cascade wider reverse" style ="background-color:white !important; margin-top:5%;">
-<div  style="background-color:#4285f4; margin-top:-2%; width:30%; color:white; height:20%; text-align:center;">
-<div  style="padding:2%;">liste des curricurims vitae</div>
+{% block title %}Modeles des cv</br></br></br>{% endblock %}{% block stylesheets %}<link rel="stylesheet" href="path-to/node_modules/mdi/css/materialdesignicons.min.css"/>{% endblock %}{% block body %}</br></br></br></br><div class="container-fluid"><div style="background-color: #f4f4f4;"><div class="container-fluid"><div class="card card-cascade wider reverse" style="background-color:white !important; margin-top:5%;"><div style="background-color:#4285f4; margin-top:-2%; width:30%; color:white; height:20%; text-align:center;margin-bottom: 20px;"><div style="padding:2%;">Modeles des curricurims vitae</div></div><section class="page-section portfolio" id="cv"><div class="container">
+<!-- cv Section Heading-->
+<!-- Icon Divider-->
+	<div class="divider-custom"> <div class="divider-custom-line"></div>
+	<div class="divider-custom-line"></div>
 </div>
-<div  class="text-right" ><a style="margin-right: 120px;  " class="btn btn-info"><font color="white"><i data-toggle="modal" data-target="#exampleModalCenter" class="fas fa-plus"></i></font></a></div>
- 
+<!-- cv Grid Items-->
+<div
+	class="row justify-content-center">
+	<!-- cv Item 4-->
+	<div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+		<div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
+			<img class="img-fluid" src="front-end/accueil/assets/img/portfolio/cv2.png" alt=""/>
+		</div>
+	</div>
+	<!-- cv Item 5-->
+	<div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+		<div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
+			<div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+				<img class="img-fluid" src="front-end/accueil/assets/img/portfolio/cv.png" alt=""/>
+			</div>
+		</div>
+	</div>
+	<!-- cv Item 6-->
+	<div class="col-md-6 col-lg-4">
+		<div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
+			<img class="img-fluid" src="front-end/accueil/assets/img/portfolio/cv3.png" alt=""/>
+
+		</div>
+	</div>
 
 
-<!-- Modal -->
-
-<form action="{{path('AddCv')}}" method="Post">
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter cv</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-  <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Titre</label>
-        <input type="text" name="titre"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
-   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Url </label>
-    <input type="text" name="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-  </div>
-  
-         <div class="container">
-             <form>
-                 <div class="form-group">
-                     <label for="fichier">Fichier</label>
-                     <input type="file" class="form-control-file" id="fichier">
-                 </div>
-             </form>
-         </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-      </div>
-
-      </div>
-    </div>
-  </div>
-</div></form>
-
-    <div class="card-body card-body-cascade text-center" >
-<table class="table table-hover">
-
-<thead>
-<tr>
-<td><strong>Titre</strong></td>
-<td><strong>Url</strong></td>
-<td><strong>Action</strong></td>
-
-</tr>
-</thead>
-<tbody>
-{% set count = 0 %}
-{% for cv in cvs %}
-<tr>
-<td>{{ cv.titre }} </td>
-<td>{{ cv.url }} </td>
-<td>
-<div class="widget-content-right">
-                        <button class="border-0 btn-transition btn btn-outline-success">
-                            <i data-toggle="modal" data-target="#exampleModalLong" class="fa fa-edit"></i>
-                        </button>
-                        <button class="border-0 btn-transition">
-<a href="{{path('deleteCv', {'id':cv.id})}}"  onClick="return confirm('Vous vouller vraiment supprimer ce cv');">   <i class="fa fa-trash-alt"></i></a>
-                        </button>
-                           </div>
-                           
-                           
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modifier cv</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-             <form>
-                 <div class="form-group">
-                     <label for="exampleInputEmail1" class="form-label">titre </label>
-    <input type="text" name="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                 </div>
-                 <div class="form-group">
-                     <label for="exampleInputEmail1" class="form-label">Url </label>
-    <input type="text" name="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                 </div>
-             </form>
-         </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Modifier</button>
-      </div>
-
-      </div>
-    </div>
-  </div>
-</div></form>
-      </div>
-       </div>
-  </div>
-</div>
-
-{# edit #}
-</td>
-{% set count = count + 1 %}
-
-</tr> {% endfor %}
-
-</tbody>
-
- </table></div></div></div></div></div>
-
-{% endblock %}
+</div></div></section></div></div></div></div>{% endblock %}

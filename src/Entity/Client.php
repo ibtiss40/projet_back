@@ -91,15 +91,17 @@ class Client implements UserInterface
      */
     private $prenom;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $genre;
+  
 
     /**
      * @ORM\OneToMany(targetEntity=Projet::class, mappedBy="client")
      */
     private $id_projet;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
 
     public function __construct()
     {
@@ -367,17 +369,7 @@ class Client implements UserInterface
         return $this;
     }
 
-    public function getGenre(): ?int
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(int $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection|Projet[]
@@ -420,5 +412,17 @@ class Client implements UserInterface
         // you *may* need a real salt depending on your encoder
         // see section on salt below
         return null;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 }

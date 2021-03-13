@@ -22,6 +22,12 @@ security:
                 password_parameter: _pasword
                 login_path: login
                 check_path: login
+                default_target_path: /cvChaimae
+            logout:
+                path: Deconnexion
+                target: login
+                invalidate_session: true
+                delete_cookies: ['PHPSESSID']
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

@@ -26,6 +26,8 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 
 
+
+
 class CVController extends AbstractController
 {
     /**
@@ -38,23 +40,21 @@ class CVController extends AbstractController
             'controller_name' => 'CVController', 
         ]);
     }
-            /**
+             /**
             * @Route("/AddExperience", name="AddExperience")
             * @return response
             */
             public function AddExperience( Request $request, EntityManagerInterface $manager )
             {   
                 $client = new Client();
-                
                  $pieces = [] ;
-               //  dump($request->request->get("experiance"));
                 for( $i = 0 ; $i <=  count((array)$request->request->get('experiance')[0]) - 1; $i ++){
                    
                     $pieces1 = [] ;
                     $pieces1 = explode("DebutEx", $request->request->get('experiance')[$i]);
                     for ($o=1; $o < count($pieces1)  ; $o++) { 
                       $pieces = substr($pieces1[$o], 0, strlen($pieces1[$o]));
-                     $pieces = explode(" - ",substr($pieces, 0, -1));
+                     $pieces = explode(" - ",substr($pieces, 0));
                         $tempEx = new Experience();
                         $tempEx->setSociete($pieces[0]);
                         $tempEx->setDateFin(new DateTime($pieces[1]));
@@ -62,19 +62,14 @@ class CVController extends AbstractController
                         $tempEx->setDescription($pieces[3]); 
                         $manager = $this->getDoctrine()->getManager();
                         $client = $manager->getRepository(Experience::class);
-                        $tempEx->setClient($this->getUser());
+                        $tempEx->setIdClient($this->getUser());
                         $manager->persist($tempEx);
-
                     }
                 } $manager->flush();
 
-           
+
                  return $this->redirectToRoute('c_v');
-   
             }  
-
-
-
              /**
             * @Route("/AddFormation", name="AddFormation")
             * @return response
@@ -122,12 +117,6 @@ class CVController extends AbstractController
             {
               $client = new Client();
                 $pieces = [] ;
-
-          
-
-             // $session = new Session();
-             // $client = $this->getUser();
-                //dd($client); 
                             // dump($request->request->get("competence"));
                  for( $i = 0 ; $i <=  count((array)$request->request->get('competence')[0]) - 1; $i ++){
                       $pieces1 = [] ;
@@ -175,6 +164,8 @@ class CVController extends AbstractController
                       $pieces = explode(" - ",substr($pieces, 0, -1));
                          $tempLan = new Langue();
                          $tempLan->setTitre($pieces[1]);
+                         $tempLan->setDescription($pieces[2]);
+
 
                          $manager = $this->getDoctrine()->getManager();
                          $client = $manager->getRepository(Langue::class);

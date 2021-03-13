@@ -15,10 +15,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Client;
 use App\Entity\Cv;
 use App\Entity\Portfolio;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 
 class BackEndController extends AbstractController
 {
+      
+
+        
+
     /**
      * @Route("/backend", name="back_end")
      */
@@ -57,7 +63,7 @@ class BackEndController extends AbstractController
     {
         return $this->render('back_end/cv3.html.twig', [
             'controller_name' => 'BackEndController',
-             'client' => $client->find(1),
+             'client' => $client->find($this->getUser()),
         ]);
     }
     ////////////////////////////////////CV//////////////////
@@ -70,6 +76,7 @@ class BackEndController extends AbstractController
      {
          return $this->render('back_end/GestionCv.html.twig', [
              'cvs' => $repo->findAll(),
+
          ]);
      }
 

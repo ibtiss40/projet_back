@@ -1,64 +1,95 @@
 {% include "base.html.twig" %}
-{% block title %}liste des clients{% endblock %}
+{% block title %}liste des clients
+{% endblock %}
 {% block stylesheets %}
 
-    <link rel="stylesheet" href="path-to/node_modules/mdi/css/materialdesignicons.min.css"/>{% endblock %}
-{% block body %}
-</br></br></br></br>
-<div class="container-fluid">
-<div style="background-color: #f4f4f4;">
-<div class="container-fluid">
-<div class="card card-cascade wider reverse" style ="background-color:white !important; margin-top:5%;">
-<div style="background-color:#4285f4; margin-top:-2%; width:30%; color:white; height:20%; text-align:center;"><div style="padding:2%;">gestion des client</div>
-</div>
-    <div class="card-body card-body-cascade text-center" >
-
-<table class="table table-hover">
-
-<thead>
-<tr>
-
-<td><strong>Nom</strong></td>
-<td><strong>Prenom</strong></td>
-<td><strong>Telephone</strong></td>
-<td><strong>Adresse</strong></td>
-<td><strong>Date_naissance</strong></td>
-<td><strong>Email</strong></td>
-<td><strong>Bio</strong></td>
-<td><strong>Genre</strong></td>
-<td><strong>Suuprimer</strong></td>
-
-
-</tr>
-</thead>
-<tbody>
-{% set count = 0 %}
-{% for client in clients %}
-<tr>
-<td>{{ client.username }} </td>
-<td>{{ client.prenom }} </td>
-<td>{{ client.Telephone }} </td>
-<td>{{ client.adress }} </td>
-<td>{{ client.dateBirth }} </td>
-<td>{{ client.email }} </td>
-<td>{{ client.bio }} </td> {#
-{% if {{ client.genre }} == (0) %} 
-<td>Homme </td>
-{% else %}<td>Femme </td>
-{% endif %} #}
-
- 
-<td>
- <a href="{{path('deleteC', {'id':client.id})}}" class="btn btn-danger"  onClick="return confirm('Vous vouller vraiment supprimer ce client');"><i class="mdi mdi-delete"></i></a>
-  <a href="{{path('profile', {'id':client.id})}}"   onClick="return confirm('Vous vouller voir');"><i class="mdi mdi-delete"></i></a>
-
-</td>
-{% set count = count + 1 %}
-
-</tr> {% endfor %}
-
-</tbody>
-
- </table></div></div></div></div></div>
-
+	<link rel="stylesheet" href="path-to/node_modules/mdi/css/materialdesignicons.min.css"/>
 {% endblock %}
+{% block body %}
+</br></br></br></br><div class="container-fluid"><div style="background-color: #f4f4f4;"><div class="container-fluid">
+<div class="card card-cascade wider reverse" style="background-color:white !important; margin-top:5%;">
+	<div style="background-color:#4285f4; margin-top:-2%; width:30%; color:white; height:20%; text-align:center;">
+		<div style="padding:2%;">gestion des client</div>
+	</div>
+	<div class="card-body card-body-cascade text-center">
+
+		<table class="table table-hover">
+
+			<thead>
+				<tr>
+
+					<td>
+						<strong>Nom</strong>
+					</td>
+					<td>
+						<strong>Prenom</strong>
+					</td>
+					<td>
+						<strong>Telephone</strong>
+					</td>
+					<td>
+						<strong>Adresse</strong>
+					</td>
+					<td>
+						<strong>Date_naissance</strong>
+					</td>
+					<td>
+						<strong>Email</strong>
+					</td>
+					<td>
+						<strong>Bio</strong>
+					</td>
+					<td>
+						<strong>Suuprimer</strong>
+					</td>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				{% set count = 0 %}
+				{% for client in clients %}
+					<tr>
+						<td>{{ client.username }}
+						</td>
+						<td>{{ client.prenom }}
+						</td>
+						<td>{{ client.Telephone }}
+						</td>
+						<td>{{ client.adress }}
+						</td>
+						<td>{{ client.dateBirth }}
+						</td>
+						<td>{{ client.email }}
+						</td>
+						<td>{{ client.bio }}
+						</td>
+						{#
+						{% if {{ client.genre }} == (0) %} 
+						<td>Homme </td>
+						{% else %}<td>Femme </td>
+						{% endif %} #}
+
+
+						<td>
+							<a href="{{path('deleteC', {'id':client.id})}}" onclick="return confirm('Vous vouller vraiment supprimer ce client');">
+								<button class="btn btn btn-outline-danger" style="">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+										<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+										<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+									</svg>
+									Supprimer
+								</button>
+							</a>
+
+						</td>
+						{% set count = count + 1 %}
+
+					</tr>
+				{% endfor %}
+
+			</tbody>
+
+		</table>
+	</div>
+</div></div></div></div>{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'bazeacueille.html.twig' %}
+
+{% block body %}
+	<html lang="en">
+
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="author" content="colorlib.com">
+			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+			<title>Sign Up Form</title>
+
+			<!-- Font Icon -->
+			<link
+			rel="stylesheet" href="front-end/inscriptionn/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+			<!-- Main css -->
+			<link rel="stylesheet" href="front-end/inscriptionn/css/style.css">
+
+		</head>
+
+		<body>
+
+			<!-- Navigation-->
+			<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+
+
+				<a class="navbar-brand js-scroll-trigger" href="#page-top">best way to start your cv</a>
+				<button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					Menu
+					<i class="fas fa-bars"></i>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#portfolio">Portfolio</a>
+						</li>
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">About</a>
+						</li>
+						<li class="nav-item mx-0 mx-lg-1">
+							<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#se-connecter">se connecter</a>
+						</li>
+					</ul>
+				</div>
+
+
+			</nav>
+
+			<div class="main">
+
+				<div class="container">
+					<h2>Inscrivez Vous</h2>
+					<form method="POST" id="signup-form" action="{{ path('inscription')}}" class="signup-form" enctype="multipart/form-data">
+						<h3>
+							About
+						</h3>
+						<fieldset>
+							<div class="form-row">
+								<div class="form-file">
+									<input type="file" class="inputfile" name="image" id="your_picture" onchange="readURL(this);"/>
+									<label for="your_picture">
+										<figure>
+											<img alt="" class="your_picture_image">
+										</figure>
+										<span class="file-button">choose picture</span>
+									</label>
+								</div>
+								<div class="form-group-flex">
+									<div class="form-group">
+										<input type="text" name="name" id="first_name" placeholder="First Name"/>
+									</div>
+									<div class="form-group">
+										<input type="text" name="prenom" id="last_name" placeholder="Last Name"/>
+									</div>
+									<div class="form-group">
+										<input type="email" name="email" id="email" placeholder="Email"/>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+
+
+						<h3>
+							About
+						</h3>
+						<fieldset>
+							<div class="form-row form-input-flex">
+								<div class="form-input">
+									<input type="password" name="pass" id="password" placeholder="password"/>
+								</div>
+								<div class="form-input">
+									<input type="password" name="confirmPassword" id="confirmPassword" placeholder="confirmPassword"/>
+								</div>
+							</div>
+							<div class="form-row form-input-flex">
+								<div class="form-input">
+									<input type="Number" name="phone" id="tel" placeholder="phone number"/>
+								</div>
+								<div class="form-input">
+									<input type="text" name="bio" id="bio" placeholder="Bio"/>
+								</div>
+
+							</div>
+							<div class="form-row form-input-flex">
+								<div class="form-input">
+									<input type="string" name="adress" id="adresse" placeholder="adresse"/>
+								</div>
+								<div class="form-input">
+									<input type="text" name="birth" id="birthdate" placeholder="birth date"/>
+								</div>
+							</div>
+
+
+						</fieldset>
+
+
+					</form>
+				</div>
+
+			</div>
+
+			<!-- JS -->
+			<script src="front-end/inscriptionn/vendor/jquery/jquery.min.js"></script>
+			<script src="front-end/inscriptionn/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+			<script src="front-end/inscriptionn/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+			<script src="front-end/inscriptionn/vendor/jquery-steps/jquery.steps.min.js"></script>
+			<script src="front-end/inscriptionn/js/main.js"></script>
+		</body>
+
+	</html>
+{% endblock %}

@@ -53,17 +53,25 @@ Coded by www.creative-tim.com
 							<div class="card-body">
 								<div class="author">
 									<a href="#">
-										<img class="avatar border-gray" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" alt="...">
-										<h5 class="title">Prenom</h5>
+
+
+										{% if client.image == null %}
+											<img class="avatar border-gray" src="../front-end/inscriptionn/images/icon-2.png" alt="...">
+										{% else %}
+											<img class="avatar border-gray" src=" {{client.image}}" alt="...">
+										{% endif %}
+
+										<h5 class="title">{{client.name}}
+											{{client.prenom}}</h5>
 									</a>
 									<p class="description">
-										@devlopper
+										{{client.bio}}
 									</p>
 								</div>
 								<p class="description text-center">
-									06-00-00-00-00
+									{{client.telephone}}
 									<br>
-									Email@gmail.com
+									{{client.email}}
 								</p>
 							</div>
 							<div class="card-footer"></div>
@@ -76,19 +84,19 @@ Coded by www.creative-tim.com
 								<h5 class="card-title">Modifier Profile</h5>
 							</div>
 							<div class="card-body">
-								<form>
+								<form method="Post" action="{{path('edituser')}}">
 
 									<div class="row">
 										<div class="col-md-6 pr-1">
 											<div class="form-group">
 												<label>Prenom</label>
-												<input type="text" name="prenom" class="form-control" placeholder="Prenom">
+												<input type="text" name="prenom" class="form-control" placeholder="{{client.prenom}}" value="{{client.prenom}}">
 											</div>
 										</div>
 										<div class="col-md-6 pl-1">
 											<div class="form-group">
 												<label>Nom</label>
-												<input type="text" name="nom" class="form-control" placeholder="Nom">
+												<input type="text" name="name" class="form-control" placeholder="{{client.name}}" value="{{client.name}}">
 											</div>
 										</div>
 									</div>
@@ -106,7 +114,7 @@ Coded by www.creative-tim.com
 										<div class="col-md-6 pr-1">
 											<div class="form-group">
 												<label>Mot de Passe</label>
-												<input type="password" name="mdp" class="form-control" placeholder="Mot de passe">
+												<input type="password" name="password" class="form-control">
 											</div>
 										</div>
 
@@ -114,7 +122,7 @@ Coded by www.creative-tim.com
 											<div class="form-group">
 												<label>Numero telephone
 												</label>
-												<input type="number" name="tel" class="form-control" placeholder="Numero telephone">
+												<input type="number" name="telephone" class="form-control" placeholder="{{client.telephone}}" value="{{client.telephone}}">
 											</div>
 										</div>
 									</div>
@@ -129,23 +137,234 @@ Coded by www.creative-tim.com
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<!--   Core JS Files   -->
-		<script src="frontend/usertemplate/assets/js/core/jquery.min.js"></script>
-		<script src="frontend/usertemplate/assets/js/core/popper.min.js"></script>
-		<script src="frontend/usertemplate/assets/js/core/bootstrap.min.js"></script>
-		<script src="frontend/usertemplate/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-		<!--  Google Maps Plugin    -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-		<!-- Chart JS -->
-		<script src="frontend/usertemplate/assets/js/plugins/chartjs.min.js"></script>
-		<!--  Notifications Plugin    -->
-		<script src="frontend/usertemplate/assets/js/plugins/bootstrap-notify.js"></script>
-		<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-		<script src="frontend/usertemplate/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
-		<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-		<script src="frontend/usertemplate/assets/demo/demo.js"></script>
-	</body>
 
-</html>
+				<table class="table table-hover">
+					<div style="background-color:#58E1E4; margin-top:5%; width:30%; color:white; height:20%; text-align:center;">
+						<div style="padding:2%;">Liste des formations</div>
+
+						<thead>
+							<tr>
+
+								<td>
+									<strong>Titre</strong>
+								</td>
+								<td>
+									<strong>Date debut</strong>
+								</td>
+								<td>
+									<strong>Date fin</strong>
+								</td>
+								<td>
+									<strong>Description</strong>
+								</td>
+								<td>
+									<strong>Supprimer</strong>
+								</td>
+
+							</tr>
+						</thead>
+						<tbody>
+							{% set count = 0 %}
+							{% for formation in client.getIdFormation() %}
+								<tr>
+									<td>{{ formation.societe }}
+									</td>
+									<td>
+										{{ formation.getDateDebut()|date("m/d/Y") }}
+									</td>
+									<td>
+										{{ formation.getDateFin()|date("m/d/Y") }}
+									</td>
+									<td>{{ formation.description }}
+									</td>
+
+
+									<td>
+										<a href="{{path('deleteForm', {'id':formation.id})}}" onclick="return confirm('Vous vouller vraiment supprimer cette formation');">
+											<button class="btn btn btn-outline-danger" style="">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+													<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+													<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+												</svg>
+												Supprimer
+											</button>
+										</a>
+
+									</td>
+									{% set count = count + 1 %}
+								</tr>
+							{% endfor %}
+
+						</tbody>
+
+					</table>
+
+
+					<table class="table table-hover">
+						<div style="background-color:#58E1E4; margin-top:5%; width:30%; color:white; height:20%; text-align:center;">
+							<div style="padding:2%;">Liste des Experiences</div>
+
+							<thead>
+								<tr>
+
+									<td>
+										<strong>Titre</strong>
+									</td>
+									<td>
+										<strong>Date debut</strong>
+									</td>
+									<td>
+										<strong>Date fin</strong>
+									</td>
+									<td>
+										<strong>Description</strong>
+									</td>
+									<td>
+										<strong>Supprimer</strong>
+									</td>
+
+								</tr>
+							</thead>
+							<tbody>
+								{% set count = 0 %}
+								{% for experience in client.getIdExperience() %}
+									<tr>
+										<td>{{ experience.societe }}
+										</td>
+										<td>
+											{{ experience.getDateDebut()|date("m/d/Y") }}
+										</td>
+										<td>
+											{{ experience.getDateFin()|date("m/d/Y") }}
+										</td>
+										<td>{{ experience.description }}
+										</td>
+
+
+										<td>
+											<a href="{{path('deleteEx', {'id':experience.id})}}" onclick="return confirm('Vous vouller vraiment supprimer cette experience');">
+												<button class="btn btn btn-outline-danger" style="">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+														<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+														<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+													</svg>
+													Supprimer
+												</button>
+											</a>
+
+										</td>
+										{% set count = count + 1 %}
+									</tr>
+								{% endfor %}
+
+							</tbody>
+
+						</table>
+
+						<table class="table table-hover">
+							<div style="background-color:#58E1E4; margin-top:5%; width:30%; color:white; height:20%; text-align:center;">
+								<div style="padding:2%;">Liste des competences</div>
+
+								<thead>
+									<tr>
+
+										<td>
+											<strong>Titre</strong>
+										</td>
+										<td>
+											<strong>Supprimer</strong>
+										</td>
+
+
+									</tr>
+								</thead>
+								<tbody>
+									{% for competence in client.getIdCompetence() %}
+										<tr>
+											<td>{{ competence.titre }}
+											</td>
+
+											<td>
+												<a href="{{path('deleteComp', {'id':competence.id})}}" onclick="return confirm('Vous vouller vraiment supprimer cette competence');">
+													<button class="btn btn btn-outline-danger" style="">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+															<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+															<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+														</svg>
+														Supprimer
+													</button>
+												</a>
+
+											</td>
+										</tr>
+									{% endfor %}
+
+								</tbody>
+
+							</table>
+
+
+							<table class="table table-hover">
+								<div style="background-color:#58E1E4; margin-top:5%; width:30%; color:white; height:20%; text-align:center;">
+									<div style="padding:2%;">Liste des loisirs</div>
+
+									<thead>
+										<tr>
+
+											<td>
+												<strong>Titre</strong>
+											</td>
+											<td>
+												<strong>Supprimer</strong>
+											</td>
+
+
+										</tr>
+									</thead>
+									<tbody>
+										{% for loisir in client.getIdLoisir() %}
+											<tr>
+												<td>{{ loisir.titre }}
+												</td>
+
+												<td>
+													<a href="{{path('deleteLoi', {'id':loisir.id})}}" onclick="return confirm('Vous vouller vraiment supprimer cette loisir');">
+														<button class="btn btn btn-outline-danger" style="">
+															<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewbox="0 0 16 16">
+																<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+																<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+															</svg>
+															Supprimer
+														</button>
+
+													</a>
+
+												</td>
+											</tr>
+										{% endfor %}
+
+									</tbody>
+
+								</table>
+
+
+							</div>
+						</div>
+						<!--   Core JS Files   -->
+						<script src="frontend/usertemplate/assets/js/core/jquery.min.js"></script>
+						<script src="frontend/usertemplate/assets/js/core/popper.min.js"></script>
+						<script src="frontend/usertemplate/assets/js/core/bootstrap.min.js"></script>
+						<script src="frontend/usertemplate/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+						<!--  Google Maps Plugin    -->
+						<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+						<!-- Chart JS -->
+						<script src="frontend/usertemplate/assets/js/plugins/chartjs.min.js"></script>
+						<!--  Notifications Plugin    -->
+						<script src="frontend/usertemplate/assets/js/plugins/bootstrap-notify.js"></script>
+						<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+						<script src="frontend/usertemplate/assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>
+						<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+						<script src="frontend/usertemplate/assets/demo/demo.js"></script>
+					</body>
+
+				</html>
